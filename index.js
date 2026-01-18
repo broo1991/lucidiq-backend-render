@@ -103,7 +103,7 @@ Return this JSON structure:
 {
   "product": {
     "name": "Exact product name",
-    "imageUrl": "Product image URL",
+    "imageUrl": "Product image URL - MUST be from Wikipedia, Wikimedia Commons, official press kits, or manufacturer media pages. Do NOT use Amazon, Best Buy, Walmart, Target, or eBay image URLs as they are blocked. Return null if no freely available image found.",
     "isBundle": false,
     "isDiscontinued": false,
     "hasRecall": false,
@@ -167,7 +167,7 @@ Return this JSON structure:
       "worthScore": 0, 
       "worthDifference": 0, 
       "betterBecause": "Why this is better value",
-      "imageUrl": "Product image URL if found"
+      "imageUrl": "Product image URL - only from Wikipedia, Wikimedia, or official press kits. Return null if not found."
     }
   ],
   "refurbishedTip": {
@@ -228,6 +228,15 @@ PRICING RULES FOR availableAt:
   - Official sites: Use their search page if available
 
 Only include gimmicks if real misleading marketing exists.
+IMAGE RULES - IMPORTANT:
+- For imageUrl fields, ONLY use images from:
+  - Wikipedia or Wikimedia Commons
+  - Official brand press kits or media pages
+  - Manufacturer product pages that allow embedding
+- NEVER use image URLs from: Amazon, Best Buy, Walmart, Target, eBay, Newegg
+- These retailers block external image loading
+- If no freely available image is found, return null for imageUrl
+- A null imageUrl is better than a blocked image
 
 Return ONLY valid JSON.`;
 
