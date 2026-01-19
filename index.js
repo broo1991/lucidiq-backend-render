@@ -155,9 +155,10 @@ Return this JSON structure:
   "gimmicks": [
     { "claim": "Marketing claim", "reality": "What it really means", "misleadingLevel": "high/medium/low" }
   ],
-  "alternatives": [
+ "alternatives": [
     { 
       "name": "Product name",
+      "type": "better or budget",
       "priceApprox": 0,
       "priceSource": "Retailer where lowest price was found",
       "availableAt": [
@@ -200,7 +201,12 @@ VERDICT LOGIC:
 - Sentiment < 40 OR Worth < 50 → SKIP
 
 ALTERNATIVES RULES - VERY IMPORTANT:
-- ONLY include alternatives with HIGHER Worth score than the current product
+- Include TWO types of alternatives:
+  1. BETTER VALUE: Products with HIGHER Worth score than the current product
+  2. BUDGET OPTION: Products with SIMILAR Worth score (within 5 points) but LOWER price
+- For each alternative, include "type": "better" or "type": "budget"
+- Budget options must be at least 15% cheaper to be worth mentioning
+- Search "[product name] price ${todayDate}" to find current lowest price
 - Search "[product name] price ${todayDate}" to find current lowest price
 - For priceApprox, find the LOWEST current price from any major retailer
 - Only include retailers that ACTUALLY CARRY THIS PRODUCT
